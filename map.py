@@ -1,6 +1,7 @@
 import folium as fo
 import numpy as np
 import tkinter as tk
+from tkinter import *
 from folium.plugins import MarkerCluster
 
 xs =[]
@@ -35,9 +36,17 @@ def clickY():
 def clickX():
     color = 'green' 
 
+clicks = 0
+ 
+def click_button():
+    global clicks
+    clicks += 1
+    # изменяем текст на кнопке
+    buttonУ["text"] = f"Clicks {clicks}"  
+
 
 app = tk.Tk()
-buttonУ = tk.Button(app, text="Increase", command=clickY, width=30)
+buttonУ = tk.Button(app, text="Increase", command=click_button, width=30)
 buttonX = tk.Button(app, text="Increase", command=clickX, width=50)
 
 def marker(x,y, z):
@@ -55,3 +64,5 @@ for i in range(len(xs)-1):
 map.save("mape.html")
 file.close()
 
+root = Tk() 
+root.mainloop()
